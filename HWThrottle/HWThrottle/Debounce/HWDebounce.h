@@ -31,7 +31,7 @@ typedef void(^HWDebounceTaskBlock)(void);
 /// @param queue execution queue, defaults the main queue
 /// @param taskBlock the task to be debounced
 - (instancetype)initWithInterval:(NSTimeInterval)interval
-                         onQueue:(dispatch_queue_t)queue
+                         onQueue:(nullable dispatch_queue_t)queue
                        taskBlock:(HWDebounceTaskBlock)taskBlock;
 
 /// Initialize a debounce object. Note that debounce is for the same HWDebounce object, and different HWDebounce objects do not interfere with each other
@@ -41,7 +41,7 @@ typedef void(^HWDebounceTaskBlock)(void);
 /// @param taskBlock the task to be debounced
 - (instancetype)initWithDebounceMode:(HWDebounceMode)debounceMode
                             interval:(NSTimeInterval)interval
-                             onQueue:(dispatch_queue_t)queue
+                             onQueue:(nullable dispatch_queue_t)queue
                            taskBlock:(HWDebounceTaskBlock)taskBlock;
 
 

@@ -98,6 +98,7 @@
 }
 
 - (void)call {
+    // 任务， block 的作用是可以取消
     if (self.block) {
         dispatch_block_cancel(self.block);
     }
@@ -107,6 +108,8 @@
             weakSelf.taskBlock();
         }
     });
+    
+    // 配合dispatch_block_cancel可以取消已经加入到队列的block 任务
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.interval * NSEC_PER_SEC)), self.queue, self.block);
 }
 
@@ -144,13 +147,18 @@
 }
 
 - (void)call {
+    //
     if (self.lastCallTaskDate) {
+        // 和上次响应计算阈值
         if ([[NSDate date] timeIntervalSinceDate:self.lastCallTaskDate] > self.interval) {
             [self runTaskDirectly];
         }
     } else {
+        // 首次响应 执行任务
         [self runTaskDirectly];
     }
+    
+    // 每次响应都重置计时
     self.lastCallTaskDate = [NSDate date];
 }
 

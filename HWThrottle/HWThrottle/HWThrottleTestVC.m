@@ -79,6 +79,7 @@
 - (void)selectMode {
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     __weak UIAlertController *bAlertVC = alertVC;
+    
     void (^block)(UIAlertAction *action) = ^void(UIAlertAction *action){
         NSUInteger index = [bAlertVC.actions indexOfObject:action];
         self.selectedMode = index;
@@ -88,7 +89,7 @@
         [self refreshCountLabel];
         
         [self.testThrottler invalidate];
-        self.testThrottler = [[HWThrottle alloc] initWithInterval:1 taskBlock:^{
+        self.testThrottler = [[HWThrottle alloc] initWithThrottleMode:self.selectedMode interval:1 onQueue:nil taskBlock:^{
             self.callCount++;
             [self refreshCountLabel];
         }];

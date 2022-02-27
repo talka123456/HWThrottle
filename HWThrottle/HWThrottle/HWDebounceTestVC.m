@@ -87,7 +87,7 @@
         [self refreshCountLabel];
         
         [self.testDebouncer invalidate];
-        self.testDebouncer = [[HWDebounce alloc] initWithInterval:1 taskBlock:^{
+        self.testDebouncer = [[HWDebounce alloc] initWithDebounceMode:self.selectedMode interval:10 onQueue:nil taskBlock:^{
             self.callCount++;
             [self refreshCountLabel];
         }];

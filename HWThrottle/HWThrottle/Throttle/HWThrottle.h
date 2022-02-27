@@ -31,7 +31,7 @@ typedef void(^HWThrottleTaskBlock)(void);
 /// @param queue execution queue, defaults the main queue
 /// @param taskBlock the task to be throttled
 - (instancetype)initWithInterval:(NSTimeInterval)interval
-                         onQueue:(dispatch_queue_t)queue
+                         onQueue:(nullable dispatch_queue_t)queue
                        taskBlock:(HWThrottleTaskBlock)taskBlock;
 
 /// Initialize a debounce object. Note that debounce is for the same HWThrottle object, and different HWThrottle objects do not interfere with each other
@@ -41,7 +41,7 @@ typedef void(^HWThrottleTaskBlock)(void);
 /// @param taskBlock the task to be throttled
 - (instancetype)initWithThrottleMode:(HWThrottleMode)throttleMode
                             interval:(NSTimeInterval)interval
-                             onQueue:(dispatch_queue_t)queue
+                             onQueue:(nullable dispatch_queue_t)queue
                            taskBlock:(HWThrottleTaskBlock)taskBlock;
 
 
